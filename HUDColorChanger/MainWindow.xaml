@@ -5,8 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HUDColorChanger"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        x:Name="_this"
+        Title="MainWindow" Height="325" Width="400" WindowStyle="ToolWindow" FontFamily="Sintony">
+    <Grid Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Right">in/out</TextBlock>
+        
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">red</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="2">green</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="3">blue</TextBlock>
+
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1">red</TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2">green</TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3">blue</TextBlock>
+
+        <TextBox Margin="2" Grid.Row="1" Grid.Column="1" FontFamily="Telegrama Render" FontSize="10" Name="TextboxRR" MaxLines="1" Text="{Binding ElementName=_this, Path=RR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+        <TextBox Margin="2" Grid.Row="1" Grid.Column="2" FontFamily="Telegrama Render" FontSize="10" Name="TextboxRG" MaxLines="1" Text="{Binding ElementName=_this, Path=RG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+        <TextBox Margin="2" Grid.Row="1" Grid.Column="3" FontFamily="Telegrama Render" FontSize="10" Name="TextboxRB" MaxLines="1" Text="{Binding ElementName=_this, Path=RB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+                                                                                                  
+        <TextBox Margin="2" Grid.Row="2" Grid.Column="1" FontFamily="Telegrama Render" FontSize="10" Name="TextboxGR" MaxLines="1" Text="{Binding ElementName=_this, Path=GR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+        <TextBox Margin="2" Grid.Row="2" Grid.Column="2" FontFamily="Telegrama Render" FontSize="10" Name="TextboxGG" MaxLines="1" Text="{Binding ElementName=_this, Path=GG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+        <TextBox Margin="2" Grid.Row="2" Grid.Column="3" FontFamily="Telegrama Render" FontSize="10" Name="TextboxGB" MaxLines="1" Text="{Binding ElementName=_this, Path=GB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+                                                                                                  
+        <TextBox Margin="2" Grid.Row="3" Grid.Column="1" FontFamily="Telegrama Render" FontSize="10" Name="TextboxBR" MaxLines="1" Text="{Binding ElementName=_this, Path=BR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+        <TextBox Margin="2" Grid.Row="3" Grid.Column="2" FontFamily="Telegrama Render" FontSize="10" Name="TextboxBG" MaxLines="1" Text="{Binding ElementName=_this, Path=BG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+        <TextBox Margin="2" Grid.Row="3" Grid.Column="3" FontFamily="Telegrama Render" FontSize="10" Name="TextboxBB" MaxLines="1" Text="{Binding ElementName=_this, Path=BB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N3}"/>
+
+        <Button Margin="2" Click="Save" Grid.Row="8" Grid.Column="3">Save</Button>
+        <Button Margin="2" Click="Reset" Grid.Row="8" Grid.Column="2">Reset</Button>
+
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4">HudColor</TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5">Accent</TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="6">Friendly</TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="7">Enemy</TextBlock>
+
+        <Grid Grid.Row="4" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+                <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+                <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+                <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Name="RectInHUD" Margin="2,1,1,1" Fill="#FF7100"/>
+            <Rectangle Name="RectInAccent" Margin="2,1,1,1" Grid.Row="1" Fill="#0A8BD6"/>
+            <Rectangle Name="RectInFriendly" Margin="2,1,1,1" Grid.Row="2" Fill="#00FF00"/>
+            <Rectangle Name="RectInEnemy" Margin="2,1,1,1" Grid.Row="3" Fill="#FF0000"/>
+
+            <Rectangle Margin="1" Grid.Column="1">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding ElementName=_this, Path=FinalHUDColor, Mode=TwoWay}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="1" Grid.Column="1" Grid.Row="1">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding ElementName=_this, Path=FinalAccentColor, Mode=TwoWay}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="1" Grid.Column="1" Grid.Row="2">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding ElementName=_this, Path=FinalFriendlyColor, Mode=TwoWay}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="1" Grid.Column="1" Grid.Row="3">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding ElementName=_this, Path=FinalEnemyColor, Mode=TwoWay}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+        </Grid>
         
     </Grid>
 </Window>
