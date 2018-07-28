@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HUDColorChanger"
         mc:Ignorable="d"
         x:Name="_this"
-        Title="MainWindow" Height="325" Width="400" WindowStyle="ToolWindow" FontFamily="Sintony">
+        Title="HUD Changer" Height="325" Width="400" WindowStyle="ToolWindow" FontFamily="Sintony">
     <Grid Margin="2">
         <Grid.RowDefinitions>
             <RowDefinition Height="{x:Static SystemParameters.IconHeight}"/>
